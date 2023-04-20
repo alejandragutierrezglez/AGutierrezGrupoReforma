@@ -15,11 +15,19 @@ namespace EjercicioLogica2
 
             Console.WriteLine("Escribe el numero para obtener factorial:");
             numero = int.Parse(Console.ReadLine());
-            for (int i = 1; i <= numero; i++)
+            if (numero == 0)
             {
-                resultado = resultado * i;
+                Console.WriteLine("El factorial de " + numero + " es: " + 1);
             }
-            Console.WriteLine("El factorial de " + numero + " es: " + resultado);
+            else 
+            {
+                for (int i = 1; i <= numero; i++)
+                {
+                    resultado = resultado * i;
+                }
+                Console.WriteLine("El factorial de " + numero + " es: " + resultado);
+            }
+            
 
             Console.ReadKey();
         }
