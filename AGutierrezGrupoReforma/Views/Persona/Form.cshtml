@@ -1,0 +1,85 @@
+﻿@model ML.Persona
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Formulario</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Persona</h2>
+            <h5>Ingrese los datos de la persona:</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Form", "Persona", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-12" style="display: none;">
+                            @Html.TextBoxFor(model => model.IdPersona, new { @class = "hidden form-control", autocomplete = "off" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Nombre)
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", @id = "txtNombre" })
+                            @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Direccion)
+                            @Html.TextBoxFor(model => model.Direccion, new { @class = "form-control", @id = "txtFechaDireccion" })
+                            @Html.ValidationMessageFor(model => model.Direccion, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Correo)
+                            @Html.TextBoxFor(model => model.Correo, new { @class = "form-control", @id = "txtCorreo" })
+                            @Html.ValidationMessageFor(model => model.Correo, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.Edad)
+                            @Html.TextBoxFor(model => model.Edad, new { @class = "form-control", @id = "txtEdad" })
+                            @Html.ValidationMessageFor(model => model.Edad, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.HabilidadPrincipal)
+                            @Html.TextBoxFor(model => model.HabilidadPrincipal, new { @class = "form-control", @id = "txtHabilidadPrincipal" })
+                            @Html.ValidationMessageFor(model => model.HabilidadPrincipal, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.HabilidadSecundaria)
+                            @Html.TextBoxFor(model => model.HabilidadSecundaria, new { @class = "form-control", @id = "txtHabilidadSecundaria" })
+                            @Html.ValidationMessageFor(model => model.HabilidadSecundaria, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.LabelFor(model => model.IdTipo)
+                            @Html.TextBoxFor(model => model.IdTipo, new { @class = "form-control", @id = "txtIdTipo" })
+                            @Html.ValidationMessageFor(model => model.IdTipo, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+                            @Html.ActionLink("Regresar", "GetAll", "Persona", htmlAttributes: new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+
+        </div>
+    </div>
+</div>

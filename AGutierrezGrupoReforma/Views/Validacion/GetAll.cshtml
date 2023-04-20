@@ -1,0 +1,100 @@
+﻿@model ML.Persona
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetAll</h1>
+
+<html>
+@using (Html.BeginForm("GetAll", "Validacion", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <head>
+        <title>Formulario</title>
+    </head>
+    <body>
+        <form name="frmDatos" action="insertaDatos.asp" method="post" id="formulario">
+            <table>
+                <tr>
+                    <td>Nombre</td>
+                    <td><input name="txtNombre" type="text" value="" id="Nombre" /></td>
+                </tr>
+                <tr>
+                    <td>Direccion</td>
+                    <td><input name="txtDireccion" type="text" value="" id="Direccion" /></td>
+                </tr>
+                <tr>
+                    <td>Correo</td>
+                    <td><input name="txtCorreo" type="text" value="" id="Correo" /></td>
+
+                </tr>
+                <tr>
+                    <td>Habilidad principal</td>
+                    <td><input name="txtHPrincipal" type="text" value="" id="HabilidadPrincipal" /></td>
+
+
+                </tr>
+                <tr>
+                    <td>Habilidad secundaria</td>
+                    <td><input name="txtHSecundaria" type="text" value="" id="HabilidadSecundaria" /></td>
+
+                </tr>
+                <tr>
+                    <td>Edad</td>
+                    <td><input name="txtEdad" type="text" value="" id="txtEdad" onblur="return validarRango(this);" maxlength="2"></td>
+
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" id="btnSubmit" value="submit" onkeypress="validarFormulario()"></td>
+                
+                </tr>
+            </table>
+        </form>
+    </body>
+}
+</html>
+
+@section Scripts {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            document.frmDatos.addEventListener('submit', validarFormulario);
+        }
+
+        function validarFormulario(evObject) {
+            evObject.preventDefault();
+            var todoCorrecto = true;
+            var formulario = document.frmDatos;
+            for (var i = 0; i < formulario.length; i++) {
+                if (formulario[i].type == 'text') {
+                    if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)) {
+                        alert(formulario[i].id + ': no puede estar vacío o contener sólo espacios en blanco');
+                        todoCorrecto = false;
+                    }
+                }
+            }
+            if (todoCorrecto == true) { formulario.submit(); alert('Validacion Correcta'); }
+        }
+
+        function validarRango(txtEdad) {
+            var numero = parseInt(txtEdad.value, 10);
+            if (isNaN(numero)) {
+                alert('Ingrese solo números');
+                txtEdad.focus();
+                txtEdad.select();
+                return false;
+            }
+            if (numero <= 90 && numero >= 10) {
+                txtEdad.focus();
+                return true;
+            }
+            alert('Solo se permite el siguiente rango: 10 a 90');
+            return false;
+        }
+    </script>
+
+}
